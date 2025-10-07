@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage"
+             Title="BMI 計算器">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label Text="BMI 計算器"
+                   FontSize="24"
+                   SemanticProperties.HeadingLevel="Level1"
+                   HorizontalOptions="Center" />
+
+            <Grid ColumnDefinitions="*,2*"
+                  RowDefinitions="Auto,Auto,Auto"
+                  ColumnSpacing="12" RowSpacing="12">
+
+                <Label Grid.Row="0" Grid.Column="0"
+                       Text="身高 (cm)"
+                       VerticalTextAlignment="Center" />
+                <Entry x:Name="HeightEntry"
+                       Grid.Row="0" Grid.Column="1"
+                       Placeholder="例如 170"
+                       Keyboard="Numeric"
+                       MaxLength="6"
+                       ReturnType="Next" />
+
+                <Label Grid.Row="1" Grid.Column="0"
+                       Text="體重 (kg)"
+                       VerticalTextAlignment="Center" />
+                <Entry x:Name="WeightEntry"
+                       Grid.Row="1" Grid.Column="1"
+                       Placeholder="例如 65"
+                       Keyboard="Numeric"
+                       MaxLength="6"
+                       ReturnType="Done" />
+
+                <Label x:Name="ErrorLabel"
+                       Grid.Row="2" Grid.ColumnSpan="2"
+                       TextColor="Tomato"
+                       IsVisible="False" />
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0"
+                        Text="計算 BMI"
+                        x:Name="CalcBtn"
+                        SemanticProperties.Hint="計算身體質量指數"
+                        Clicked="OnCalculateClicked"
+                        HorizontalOptions="Fill" />
+                <Button Grid.Column="1"
+                        Text="清除"
+                        Clicked="OnClearClicked"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+            <Frame Padding="16" HasShadow="True" CornerRadius="12">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="結果" FontAttributes="Bold" />
+                    <Label x:Name="BmiValueLabel"
+                           Text="--"
+                           FontSize="28"
+                           SemanticProperties.Description="BMI 數值" />
+                    <Label x:Name="CategoryLabel"
+                           Text=""
+                           FontSize="16" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label FontSize="12" Opacity="0.7"
+                   Text="說明：BMI = 體重(kg) ÷ 身高(m)²。範例：170cm、65kg → 22.49。" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
